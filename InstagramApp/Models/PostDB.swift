@@ -7,7 +7,6 @@
 
 import Foundation
 import Firebase
-import FirebaseStorage
 import FirebaseFirestore
 
 class PostDB {
@@ -35,6 +34,5 @@ class PostDB {
         self.postDate = dic["postDate"] as? Double ?? Double()
         self.likeCount = dic["likeCount"] as? Int ?? Int()
         self.likeFlagDic = dic["likeFlagDic"] as? Dictionary ?? Dictionary()
-    }
-    
+    }    
 }

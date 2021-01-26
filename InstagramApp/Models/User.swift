@@ -16,8 +16,6 @@ class User {
     let createdAt: Timestamp
     let profileImageUrl: String
     
-    var documentId: String?
-    
     init(dic: [String: Any]) {
         
         self.email = dic["email"] as? String ?? ""

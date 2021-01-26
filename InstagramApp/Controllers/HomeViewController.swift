@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
             signUpViewController.modalPresentationStyle = .fullScreen
             self.present(signUpViewController, animated: true, completion: nil)
         }
-    
+        
     }
     
     private func setupViews() {
@@ -82,6 +82,7 @@ class HomeViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -102,22 +103,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.post = postDB[indexPath.row]
         cell.goodButton.tag = indexPath.row
         cell.goodButton.addTarget(self, action: #selector(tappedGoodButton(_:)), for: .touchUpInside)
-
-
+        
+        
         let uid = postDB[indexPath.row].uid
         
         if (self.postDB[indexPath.row].likeFlagDic[uid] != nil) == true {
             
             let flag = self.postDB[indexPath.row].likeFlagDic[uid]
-
-        if flag! == true {
-
+            
+            if flag! == true {
+                
                 cell.goodButton.setImage(UIImage(named: "ハート"), for: .normal)
-
-        } else if flag! == false {
-
+                
+            } else if flag! == false {
+                
                 cell.goodButton.setImage(UIImage(named: "noハート"), for: .normal)
-
+                
             }
             
         }
@@ -137,37 +138,37 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     @objc func tappedGoodButton(_ sender: UIButton) {
-
+        
         let uid = postDB[sender.tag].uid
         var count = Int()
         let flag = self.postDB[sender.tag].likeFlagDic[uid]
-
+        
         if flag == nil {
-
+            
             count = self.postDB[sender.tag].likeCount + 1
             db.collection("post").document(postDB[sender.tag].postId).setData(["likeFlagDic": [uid: true]], merge: true)
             
         } else {
-
+            
             if flag == true {
-
+                
                 count = self.postDB[sender.tag].likeCount - 1
                 db.collection("post").document(postDB[sender.tag].postId).setData(["likeFlagDic": [uid: false]], merge: true)
-
+                
             } else {
-
+                
                 if flag == false {
-
+                    
                     count = self.postDB[sender.tag].likeCount + 1
                     db.collection("post").document(postDB[sender.tag].postId).setData(["likeFlagDic": [uid: true]], merge: true)
                     
                 }
             }
         }
-
+        
         db.collection("post").document(postDB[sender.tag].postId).updateData(["likeCount": count], completion: nil)
         toukouListCollectionView.reloadData()
-
+        
     }
-
+    
 }

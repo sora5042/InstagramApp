@@ -49,7 +49,7 @@ class HashTagViewController: UIViewController {
         
     }
 
-    private func loadHashTag(hashTag:String){
+    private func loadHashTag(hashTag:String) {
         
         db.collection("#\(hashTag)").order(by:"postDate").addSnapshotListener { (snapShot, err) in
             
@@ -81,7 +81,7 @@ class HashTagViewController: UIViewController {
     }
 }
 
-
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension HashTagViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -14,7 +14,6 @@ class ToukouListCollectionViewCell: UICollectionViewCell {
     
     private var postDB = [PostDB]()
     private let db = Firestore.firestore()
-
     
     var post: PostDB? {
         didSet {
@@ -32,6 +31,7 @@ class ToukouListCollectionViewCell: UICollectionViewCell {
                     
                     
                 }
+                
                 if let url = URL(string: edit.profileImageUrl) {
                     Nuke.loadImage(with: url, into: userImageView)
                     
@@ -54,11 +54,8 @@ class ToukouListCollectionViewCell: UICollectionViewCell {
         
         backgroundColor = .white
         userImageView.layer.cornerRadius = 12.5
-        
-
+    
     }
-    
-    
     
     private func dateFormatterForDateLabel(date: Date) -> String {
         let formatter = DateFormatter()

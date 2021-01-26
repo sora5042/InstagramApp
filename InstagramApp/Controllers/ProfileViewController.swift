@@ -45,8 +45,6 @@ class ProfileViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        
-        
         profileTopView.layer.borderWidth = 3
         profileTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         
@@ -60,9 +58,13 @@ class ProfileViewController: UIViewController {
     @objc func keyboardWillShow(_ notification:NSNotification){
         
         if self.view.frame.origin.y == 0 {
+            
             self.view.frame.origin.y -= 200
+            
         } else {
+            
             return
+            
         }
     }
     
@@ -96,13 +98,17 @@ class ProfileViewController: UIViewController {
     @objc private func tappedLogoutButton() {
         
         do {
+            
             try Auth.auth().signOut()
             let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
             let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
             signUpViewController.modalPresentationStyle = .fullScreen
             self.present(signUpViewController, animated: true, completion: nil)
+            
         } catch  {
+            
             print("ログアウトに失敗しました。\(error)")
+            
         }
     }
     
@@ -116,10 +122,11 @@ class ProfileViewController: UIViewController {
                 print("ユーザー情報の取得に失敗しました。\(err)")
                 return
             }
-            guard let snapShot = snapShot, let dic = snapShot.data() else { return }
             
+            guard let snapShot = snapShot, let dic = snapShot.data() else { return }
             let user = User(dic: dic)
             self.user = user
+            
         }
     }
 }

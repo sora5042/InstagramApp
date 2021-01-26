@@ -67,7 +67,7 @@ class PostViewController: UIViewController {
         
     }
     
-    @objc func keyboardWillShow(_ notification:NSNotification){
+    @objc func keyboardWillShow(_ notification:NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -79,7 +79,7 @@ class PostViewController: UIViewController {
         }
     }
     
-    @objc func keyboardWillHide(_ notification:NSNotification){
+    @objc func keyboardWillHide(_ notification:NSNotification) {
         
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -108,6 +108,7 @@ class PostViewController: UIViewController {
                 return
                 
             }
+            
             storageRef.downloadURL { (url, err) in
                 
                 if let err = err {
@@ -191,7 +192,38 @@ class PostViewController: UIViewController {
         
     }
     
-    func searchHashTag(){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        contentTextField.resignFirstResponder()
+        
+    }
+    
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+        
+    }
+    
+    private func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
+    }
+}
+
+// MARK: - HashTagメソッド
+extension PostViewController {
+    
+    private func searchHashTag(){
         
         guard let hashTagText = contentTextField.text as NSString? else { return }
         do{
@@ -204,7 +236,7 @@ class PostViewController: UIViewController {
             
         }
     }
-
+    
     private func sendHashTag(hashTag: String) {
         
         guard let contentImage = contentImageButton.imageView?.image else { return }
@@ -266,36 +298,9 @@ class PostViewController: UIViewController {
             }
         }
     }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        contentTextField.resignFirstResponder()
-        
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        return true
-        
-    }
-    
-    func randomString(length: Int) -> String {
-        
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let len = UInt32(letters.length)
-        
-        var randomString = ""
-        for _ in 0 ..< length {
-            let rand = arc4random_uniform(len)
-            var nextChar = letters.character(at: Int(rand))
-            randomString += NSString(characters: &nextChar, length: 1) as String
-        }
-        return randomString
-    }
 }
 
+//MARK: - UIImagePickerControllerDelegate,UINavigationControllerDelegate
 extension PostViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

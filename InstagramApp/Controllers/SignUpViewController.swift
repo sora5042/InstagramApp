@@ -14,7 +14,7 @@ import PKHUD
 
 class SignUpViewController: UIViewController {
     
-
+    
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -27,37 +27,37 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-
+        
     }
     
-   private func setupViews() {
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    private func setupViews() {
         
-    profileImageButton.layer.cornerRadius = 100
-    profileImageButton.layer.borderWidth = 1
-    profileImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
-    
-    registerButton.layer.cornerRadius = 12
-    
-    profileImageButton.addTarget(self, action: #selector(tappedProfileImageButton), for: .touchUpInside)
-    registerButton.addTarget(self, action: #selector(tappedRegisterButton), for: .touchUpInside)
-    alreadyHaveAccountButton.addTarget(self, action: #selector(tappedAlreadyHaveAccountButton), for: .touchUpInside)
-    
-    emailTextField.delegate = self
-    passwordTextField.delegate = self
-    userNameTextField.delegate = self
-    
-    registerButton.isEnabled = false
-    registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
-    
-    signUpTopView.layer.borderWidth = 3
-    signUpTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-   }
+        profileImageButton.layer.cornerRadius = 100
+        profileImageButton.layer.borderWidth = 1
+        profileImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
+        
+        registerButton.layer.cornerRadius = 12
+        
+        profileImageButton.addTarget(self, action: #selector(tappedProfileImageButton), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(tappedRegisterButton), for: .touchUpInside)
+        alreadyHaveAccountButton.addTarget(self, action: #selector(tappedAlreadyHaveAccountButton), for: .touchUpInside)
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        userNameTextField.delegate = self
+        
+        registerButton.isEnabled = false
+        registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
+        
+        signUpTopView.layer.borderWidth = 3
+        signUpTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
+        
+    }
     
-    @objc func keyboardWillShow(_ notification:NSNotification){
+    @objc func keyboardWillShow(_ notification:NSNotification) {
         
         if self.view.frame.origin.y == 0 {
             self.view.frame.origin.y -= 200
@@ -66,7 +66,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    @objc func keyboardWillHide(_ notification:NSNotification){
+    @objc func keyboardWillHide(_ notification:NSNotification) {
         
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -86,7 +86,7 @@ class SignUpViewController: UIViewController {
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         loginViewController.modalPresentationStyle = .fullScreen
         self.present(loginViewController, animated: true, completion: nil)
-
+        
     }
     
     @objc private func tappedProfileImageButton() {
@@ -187,8 +187,8 @@ class SignUpViewController: UIViewController {
     }
 }
 
+//MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
-    
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
@@ -208,6 +208,7 @@ extension SignUpViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate,UINavigationControllerDelegate
 extension SignUpViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
