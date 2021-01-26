@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,13 +12,13 @@
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="HomeViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ai2-AZ-dhj">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tgd-IW-p6h">
                                     <size key="itemSize" width="128" height="128"/>
@@ -38,32 +38,20 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZa-mB-iRR">
-                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDh-WH-ysf">
-                                        <rect key="frame" x="8" y="14" width="123" height="32"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instaguram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDh-WH-ysf">
+                                        <rect key="frame" x="0.0" y="14" width="375" height="32"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="29"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-gQ-ZuK">
-                                        <rect key="frame" x="359" y="14" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="rpj-gQ-ZuK" secondAttribute="height" multiplier="1:1" id="G5h-lO-1sD"/>
-                                            <constraint firstAttribute="width" constant="40" id="H98-54-Me9"/>
-                                            <constraint firstAttribute="height" constant="40" id="L3D-b6-qSK"/>
-                                        </constraints>
-                                        <state key="normal" image="プラスのアイコン素材 (1)"/>
-                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="rpj-gQ-ZuK" firstAttribute="top" secondItem="zZa-mB-iRR" secondAttribute="top" constant="14" id="3OK-7U-YJG"/>
-                                    <constraint firstAttribute="bottom" secondItem="fDh-WH-ysf" secondAttribute="bottom" constant="14" id="Anh-ea-scA"/>
-                                    <constraint firstItem="fDh-WH-ysf" firstAttribute="top" secondItem="zZa-mB-iRR" secondAttribute="top" constant="14" id="KQk-ex-zl7"/>
-                                    <constraint firstItem="rpj-gQ-ZuK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fDh-WH-ysf" secondAttribute="trailing" constant="8" symbolic="YES" id="Zeo-IQ-GJJ"/>
-                                    <constraint firstItem="fDh-WH-ysf" firstAttribute="leading" secondItem="zZa-mB-iRR" secondAttribute="leading" constant="8" id="nGt-BI-l7K"/>
-                                    <constraint firstAttribute="trailing" secondItem="rpj-gQ-ZuK" secondAttribute="trailing" constant="15" id="siv-b0-2AP"/>
+                                    <constraint firstItem="fDh-WH-ysf" firstAttribute="top" secondItem="zZa-mB-iRR" secondAttribute="top" constant="14" id="Kk7-V6-yEF"/>
+                                    <constraint firstItem="fDh-WH-ysf" firstAttribute="leading" secondItem="zZa-mB-iRR" secondAttribute="leading" id="Nzg-NY-RTj"/>
+                                    <constraint firstAttribute="trailing" secondItem="fDh-WH-ysf" secondAttribute="trailing" id="qXG-WZ-pC2"/>
+                                    <constraint firstAttribute="bottom" secondItem="fDh-WH-ysf" secondAttribute="bottom" constant="14" id="vhv-GB-u8t"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -81,6 +69,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="homeTopView" destination="zZa-mB-iRR" id="Sb3-J1-zDr"/>
                         <outlet property="toukouListCollectionView" destination="ai2-AZ-dhj" id="4Zz-td-KXP"/>
                     </connections>
                 </viewController>
@@ -90,7 +79,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="プラスのアイコン素材 (1)" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

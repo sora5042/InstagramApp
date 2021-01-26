@@ -18,7 +18,6 @@ class HashTagDB {
     let uid: String
     let profileImageUrl: String
     let postDate: Double
-    let hashTag: String
     
     init(dic: [String: Any]) {
         
@@ -29,10 +28,6 @@ class HashTagDB {
         self.uid = dic["uid"] as? String ?? ""
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
         self.postDate = dic["postDate"] as? Double ?? Double()
-        self.hashTag = dic["hashTag"] as? String ?? ""
-    
-
-
 
     }
 }

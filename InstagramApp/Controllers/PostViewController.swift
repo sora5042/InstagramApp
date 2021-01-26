@@ -56,9 +56,9 @@ class PostViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        editTopView.layer.borderWidth = 1
+        editTopView.layer.borderWidth = 3
         editTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
-        contentImageButton.layer.borderWidth = 1
+        contentImageButton.layer.borderWidth = 2
         contentImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
         contentImageButton.addTarget(self, action: #selector(tappedContentImageButton), for: .touchUpInside)
         sendButton.addTarget(self, action: #selector(tappedSendButton), for: .touchUpInside)
@@ -67,7 +67,7 @@ class PostViewController: UIViewController {
         
     }
     
-    @objc func keyboardWillShow(_ notification:NSNotification){
+    @objc func keyboardWillShow(_ notification:NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -79,7 +79,7 @@ class PostViewController: UIViewController {
         }
     }
     
-    @objc func keyboardWillHide(_ notification:NSNotification){
+    @objc func keyboardWillHide(_ notification:NSNotification) {
         
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -108,7 +108,7 @@ class PostViewController: UIViewController {
                 return
                 
             }
-            print("Firestorageへの情報の保存に成功しました。")
+            
             storageRef.downloadURL { (url, err) in
                 
                 if let err = err {
@@ -149,7 +149,10 @@ class PostViewController: UIViewController {
             "contentImageUrl": contentImageUrl,
             "uid": uid,
             "username": username,
-            "profileImageUrl": profileImageUrl
+            "profileImageUrl": profileImageUrl,
+            "likeCount": 0,
+            "likeFlagDic": [uid: Bool()],
+            "postId": postId
             
         ] as [String : Any]
         
@@ -160,7 +163,6 @@ class PostViewController: UIViewController {
                 return
                 
             }
-            print("aaa")
         }
     }
     
@@ -190,7 +192,38 @@ class PostViewController: UIViewController {
         
     }
     
-    func searchHashTag(){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        contentTextField.resignFirstResponder()
+        
+    }
+    
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+        
+    }
+    
+    private func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
+    }
+}
+
+// MARK: - HashTagメソッド
+extension PostViewController {
+    
+    private func searchHashTag(){
         
         guard let hashTagText = contentTextField.text as NSString? else { return }
         do{
@@ -203,7 +236,7 @@ class PostViewController: UIViewController {
             
         }
     }
-
+    
     private func sendHashTag(hashTag: String) {
         
         guard let contentImage = contentImageButton.imageView?.image else { return }
@@ -249,7 +282,10 @@ class PostViewController: UIViewController {
             "contentImageUrl": contentImageUrl,
             "uid": uid,
             "username": username,
-            "profileImageUrl": profileImageUrl
+            "profileImageUrl": profileImageUrl,
+            "likeCount": 0,
+            "likeFlagDic": [uid: Bool()],
+            "postId": postId
             
         ] as [String : Any]
         
@@ -260,39 +296,11 @@ class PostViewController: UIViewController {
                 return
                 
             }
-            print("bbb")
         }
-    }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        contentTextField.resignFirstResponder()
-        
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        return true
-        
-    }
-    
-    func randomString(length: Int) -> String {
-        
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let len = UInt32(letters.length)
-        
-        var randomString = ""
-        for _ in 0 ..< length {
-            let rand = arc4random_uniform(len)
-            var nextChar = letters.character(at: Int(rand))
-            randomString += NSString(characters: &nextChar, length: 1) as String
-        }
-        return randomString
     }
 }
 
+//MARK: - UIImagePickerControllerDelegate,UINavigationControllerDelegate
 extension PostViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

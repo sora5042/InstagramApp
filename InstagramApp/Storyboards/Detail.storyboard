@@ -1,7 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Detail View Controller-->
+        <scene sceneID="Bwf-hK-QW0">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ML3-bf-lxA" customClass="DetailViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vIK-Ba-vjy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="isq-mh-ah9">
+                                <rect key="frame" x="20" y="121" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ASm-8E-F0t"/>
+                                    <constraint firstAttribute="width" constant="100" id="ORK-vi-ccS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jF0-u9-fIy">
+                                <rect key="frame" x="0.0" y="229" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jF0-u9-fIy" secondAttribute="height" multiplier="1:1" id="p5F-qS-tvO"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿文" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxd-4E-bYb">
+                                <rect key="frame" x="16" y="650" width="343" height="103"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="103" id="MLG-nq-zSA"/>
+                                    <constraint firstAttribute="width" constant="343" id="U26-N9-uwx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6u0-df-7Ys">
+                                <rect key="frame" x="128" y="121" width="231" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="231" id="19l-g5-oxe"/>
+                                    <constraint firstAttribute="height" constant="100" id="Yph-s3-ywf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9bo-SF-t1v"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6u0-df-7Ys" firstAttribute="top" secondItem="isq-mh-ah9" secondAttribute="top" id="5ZX-Mm-rFZ"/>
+                            <constraint firstItem="isq-mh-ah9" firstAttribute="top" secondItem="9bo-SF-t1v" secondAttribute="top" constant="77" id="7bm-wx-LHv"/>
+                            <constraint firstItem="bxd-4E-bYb" firstAttribute="leading" secondItem="9bo-SF-t1v" secondAttribute="leading" constant="16" id="AoI-kr-P5A"/>
+                            <constraint firstItem="isq-mh-ah9" firstAttribute="leading" secondItem="9bo-SF-t1v" secondAttribute="leading" constant="20" id="IBP-Id-WzV"/>
+                            <constraint firstItem="9bo-SF-t1v" firstAttribute="trailing" secondItem="6u0-df-7Ys" secondAttribute="trailing" constant="16" id="Zsq-Kf-ell"/>
+                            <constraint firstItem="bxd-4E-bYb" firstAttribute="top" secondItem="jF0-u9-fIy" secondAttribute="bottom" constant="46" id="cFL-T3-Hpo"/>
+                            <constraint firstItem="6u0-df-7Ys" firstAttribute="leading" secondItem="isq-mh-ah9" secondAttribute="trailing" constant="8" symbolic="YES" id="g7A-Db-161"/>
+                            <constraint firstItem="jF0-u9-fIy" firstAttribute="trailing" secondItem="9bo-SF-t1v" secondAttribute="trailing" id="hWu-9W-aRb"/>
+                            <constraint firstItem="9bo-SF-t1v" firstAttribute="trailing" secondItem="bxd-4E-bYb" secondAttribute="trailing" constant="16" id="lM3-Oo-bpz"/>
+                            <constraint firstItem="jF0-u9-fIy" firstAttribute="top" secondItem="isq-mh-ah9" secondAttribute="bottom" constant="8" symbolic="YES" id="mIo-0x-g8k"/>
+                            <constraint firstItem="jF0-u9-fIy" firstAttribute="leading" secondItem="9bo-SF-t1v" secondAttribute="leading" id="ujz-i4-jO6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentImageView" destination="jF0-u9-fIy" id="ghm-gK-n8h"/>
+                        <outlet property="descriptionLabel" destination="bxd-4E-bYb" id="G8t-At-my8"/>
+                        <outlet property="userImageView" destination="isq-mh-ah9" id="Bgc-Xz-DJv"/>
+                        <outlet property="usernameLabel" destination="6u0-df-7Ys" id="yjX-lG-h68"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eny-DV-1cO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="66.400000000000006" y="159.60591133004928"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
