@@ -6,16 +6,3 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestore
-
-struct DataSet {
-    
-    let username: String
-    let profileImageUrl: String
-    let createdAt: Timestamp
-    let contentImageUrl: String
-    let contentText: String
-    let uid: String
-    
-}

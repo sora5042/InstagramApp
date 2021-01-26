@@ -7,20 +7,27 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 import FirebaseFirestore
 
+protocol LoadOKDelegate {
+    
+    func loadOK(check: Int)
+}
+
 class PostDB {
+    
+    var dataSets = [DataSet]()
+    let db = Firestore.firestore()
+    var loadOKDelegate: LoadOKDelegate?
     
     let username: String
     let createdAt: Timestamp
     let contentImageUrl: String
     let contentText: String
-    var uid: String
-    var postId: String
+    let uid: String
     let profileImageUrl: String
     let postDate: Double
-    let likeCount: Int
-    let likeFlagDic: Dictionary<String, Bool>
     
     init(dic: [String: Any]) {
         
@@ -29,10 +36,64 @@ class PostDB {
         self.contentImageUrl = dic["contentImageUrl"] as? String ?? ""
         self.contentText = dic["contentText"] as? String ?? ""
         self.uid = dic["uid"] as? String ?? ""
-        self.postId = dic["postId"] as? String ?? ""
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
         self.postDate = dic["postDate"] as? Double ?? Double()
-        self.likeCount = dic["likeCount"] as? Int ?? Int()
-        self.likeFlagDic = dic["likeFlagDic"] as? Dictionary ?? Dictionary()
-    }    
+    }
+    
+    
+    func loadContents() {
+        
+        db.collection("post").order(by: "postDate").addSnapshotListener { (snapShot, err) in
+            
+            if let err = err {
+                print(err)
+                return
+                
+            }
+            
+            if let snapShotDoc = snapShot?.documents {
+                
+                for doc in snapShotDoc {
+                    
+                    let data = doc.data()
+                    let newDataSet = DataSet(dic: data)
+                    
+                    self.dataSets.append(newDataSet)
+                    self.dataSets.reverse()
+                    
+                }
+            }
+        }
+    }
+
+        
+        func loadHashTag(hashTag:String){
+            
+            db.collection("#\(hashTag)").order(by:"postDate").addSnapshotListener { (snapShot, error) in
+                
+                self.dataSets = []
+                
+                if error != nil {
+                    print(error.debugDescription)
+                    return
+                }
+                
+                if let snapShotDoc = snapShot?.documents{
+                    
+                    for doc in snapShotDoc{
+                        let data = doc.data()
+                        
+                        //                    if let uid = data["uid"] as? String, let username = data["username"] as? String, let contentText = data["contentText"] as? String, let profileImageUrl = data["profileImageUrl"] as? String, let contentImageUrl = data["contentImageUrl"] as? String, let postDate = data["postDate"] as? Double {
+                        
+                        let newDataSet = DataSet(dic: data)
+                        
+                        self.dataSets.append(newDataSet)
+                        self.dataSets.reverse()
+                        self.loadOKDelegate?.loadOK(check: 1)
+                        
+                    }
+                }
+            }
+        }
+    
 }
