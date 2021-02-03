@@ -18,9 +18,11 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="投稿文" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-2W-WMD">
                                 <rect key="frame" x="16" y="609" width="298" height="34"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="298" id="3ab-q1-N57"/>
                                 </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -44,12 +46,13 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHL-Wm-pw1">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="29"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="NHL-Wm-pw1" secondAttribute="trailing" id="KEe-t6-dcO"/>
                                     <constraint firstAttribute="height" constant="60" id="LtR-TI-789"/>
@@ -64,7 +67,7 @@
                                     <constraint firstAttribute="width" constant="87" id="Xao-tr-wOz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVS-vR-Az1">
@@ -75,7 +78,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="投稿する画像を選択">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                         </subviews>
@@ -100,10 +103,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="PostTopView" destination="IJI-jS-JVh" id="toZ-ag-OCk"/>
+                        <outlet property="PostUsernameLabel" destination="rc9-xd-be0" id="j8f-hf-BKH"/>
                         <outlet property="contentImageButton" destination="cVS-vR-Az1" id="Ypf-a6-SOm"/>
                         <outlet property="contentTextField" destination="0fP-2W-WMD" id="abh-zi-pBs"/>
-                        <outlet property="editTopView" destination="IJI-jS-JVh" id="toZ-ag-OCk"/>
-                        <outlet property="editUsernameLabel" destination="rc9-xd-be0" id="j8f-hf-BKH"/>
                         <outlet property="sendButton" destination="CzW-R2-Mh7" id="f7A-yY-o0N"/>
                         <outlet property="userImageView" destination="1uc-DN-Nhi" id="iRq-Wi-YWe"/>
                         <outlet property="usernameLabel" destination="rc9-xd-be0" id="J2C-kJ-XHO"/>

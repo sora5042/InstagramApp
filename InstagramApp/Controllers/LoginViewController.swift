@@ -10,9 +10,10 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 import PKHUD
+import Pastel
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var loginTopView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,9 +22,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupViews()
-            
+        textFieldPlaceholder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        PastelAnimation()
     }
     
     private func setupViews() {
@@ -37,10 +44,17 @@ class LoginViewController: UIViewController {
         
     }
     
+    private func textFieldPlaceholder() {
+        
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "パスワード", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
+    }
+    
     @objc private func tappedDontHaveAccountButton() {
         
         let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
         let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        signUpViewController.modalTransitionStyle = .crossDissolve
         signUpViewController.modalPresentationStyle = .fullScreen
         self.present(signUpViewController, animated: true, completion: nil)
         
@@ -83,6 +97,28 @@ class LoginViewController: UIViewController {
         
         textField.resignFirstResponder()
         return true
+        
+    }
+    
+    private func PastelAnimation() {
+        
+        let pastelView = PastelView(frame: view.bounds)
+        
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+        
+        pastelView.animationDuration = 3.0
+        
+        pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                              UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                              UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                              UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+        
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
         
     }
 }

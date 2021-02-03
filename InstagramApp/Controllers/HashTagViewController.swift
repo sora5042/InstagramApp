@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import Nuke
+import Pastel
 
 class HashTagViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class HashTagViewController: UIViewController {
     private var hashTagDB = [HashTagDB]()
     var hashTag = String()
     private let db = Firestore.firestore()
-
+    
     @IBOutlet weak var hashTagLabel: UILabel!
     @IBOutlet weak var hashTagTopView: UIView!
     @IBOutlet weak var hashTagCollectionView: UICollectionView!
@@ -29,15 +30,21 @@ class HashTagViewController: UIViewController {
         
         setupViews()
         loadHashTag(hashTag: hashTag)
-
-
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        PastelAnimation()
     }
     
     private func setupViews() {
         
         hashTagCollectionView.delegate = self
         hashTagCollectionView.dataSource = self
-                
+        
         hashTagTopView.layer.borderWidth = 3
         hashTagTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         
@@ -48,7 +55,7 @@ class HashTagViewController: UIViewController {
         hashTagLabel.text = "#\(hashTag)"
         
     }
-
+    
     private func loadHashTag(hashTag:String) {
         
         db.collection("#\(hashTag)").order(by:"postDate").addSnapshotListener { (snapShot, err) in
@@ -79,6 +86,28 @@ class HashTagViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         
     }
+    
+    private func PastelAnimation() {
+        
+        let pastelView = PastelView(frame: view.bounds)
+        
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+        
+        pastelView.animationDuration = 3.0
+        
+        pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                              UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                              UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                              UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+        
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
+        
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
@@ -91,7 +120,7 @@ extension HashTagViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         countLabel.text = String(hashTagDB.count)
-
+        
         return hashTagDB.count
         
     }
@@ -126,21 +155,21 @@ extension HashTagViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let width = collectionView.bounds.width/3.0
-           let height = width
-
-           return CGSize(width: width, height: height)
-       }
-       
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets.zero
-       }
-
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-           return 0
-       }
-
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-           return 0
-       }
+        let width = collectionView.bounds.width/3.0
+        let height = width
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }

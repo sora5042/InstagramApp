@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
-
+import Pastel
 
 class HomeViewController: UIViewController {
     
@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
     private var postDB = [PostDB]()
     private var postdb: PostDB?
     private let db = Firestore.firestore()
-    
     
     @IBOutlet weak var toukouListCollectionView: UICollectionView!
     @IBOutlet weak var homeTopView: UIView!
@@ -27,6 +26,12 @@ class HomeViewController: UIViewController {
         setupViews()
         fetchPostInfoFromFirestore()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        PastelAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,7 +45,6 @@ class HomeViewController: UIViewController {
             signUpViewController.modalPresentationStyle = .fullScreen
             self.present(signUpViewController, animated: true, completion: nil)
         }
-        
     }
     
     private func setupViews() {
@@ -48,10 +52,6 @@ class HomeViewController: UIViewController {
         toukouListCollectionView.delegate = self
         toukouListCollectionView.dataSource = self
         toukouListCollectionView.register(UINib(nibName: "ToukouListCell", bundle: nil), forCellWithReuseIdentifier: cellId)
-        
-        homeTopView.layer.borderWidth = 3
-        homeTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
-        
     }
     
     private func fetchPostInfoFromFirestore() {
@@ -79,6 +79,28 @@ class HomeViewController: UIViewController {
                 self.toukouListCollectionView.reloadData()
             })
         }
+    }
+    
+    private func PastelAnimation() {
+        
+        let pastelView = PastelView(frame: view.bounds)
+        
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+        
+        pastelView.animationDuration = 3.0
+        
+        pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                              UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                              UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                              UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+        
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
+        
     }
 }
 
@@ -120,7 +142,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 cell.goodButton.setImage(UIImage(named: "noハート"), for: .normal)
                 
             }
-            
         }
         
         cell.descriptionLabel.enabledTypes = [.hashtag]
@@ -128,6 +149,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             let storyboard = UIStoryboard(name: "HashTag", bundle: nil)
             let hashTagViewController = storyboard.instantiateViewController(withIdentifier: "HashTagViewController") as! HashTagViewController
+            hashTagViewController.modalTransitionStyle = .crossDissolve
             hashTagViewController.modalPresentationStyle = .fullScreen
             hashTagViewController.hashTag = hashTag
             self.present(hashTagViewController, animated: true, completion: nil)
@@ -170,5 +192,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         toukouListCollectionView.reloadData()
         
     }
-    
 }

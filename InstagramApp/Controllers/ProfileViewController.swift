@@ -9,24 +9,25 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import Nuke
+import Pastel
 
 class ProfileViewController: UIViewController {
     
     var user: User? {
         didSet {
-
+            
             if let user = user {
-
+                
                 usernameLabel.text = user.username
-
+                
                 if let url = URL(string: user.profileImageUrl ) {
                     Nuke.loadImage(with: url, into: profileImageView)
-
+                    
                 }
             }
         }
     }
-
+    
     @IBOutlet weak var profileTopView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -37,7 +38,13 @@ class ProfileViewController: UIViewController {
         
         setupViews()
         fetchLoginUserInfo()
-
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        PastelAnimation()
     }
     
     private func setupViews() {
@@ -128,5 +135,27 @@ class ProfileViewController: UIViewController {
             self.user = user
             
         }
+    }
+    
+    private func PastelAnimation() {
+        
+        let pastelView = PastelView(frame: view.bounds)
+        
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+        
+        pastelView.animationDuration = 3.0
+        
+        pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                              UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                              UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                              UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+        
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
+        
     }
 }

@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2C862FE5F37B2BA8DF3AE076 /* Pods_InstagramApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC45D9EEA072ECD15832C07 /* Pods_InstagramApp.framework */; };
+		D604D26D25CA215300122E90 /* CheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D26C25CA215300122E90 /* CheckModel.swift */; };
 		D604E71825AE9C370012F117 /* ToukouListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604E71725AE9C370012F117 /* ToukouListCollectionViewCell.swift */; };
 		D604E71C25AE9CE90012F117 /* ToukouListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D604E71B25AE9CE90012F117 /* ToukouListCell.xib */; };
 		D604E72025AEE15E0012F117 /* BaseTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D604E71F25AEE15E0012F117 /* BaseTabBar.storyboard */; };
 		D604E72525AEE2120012F117 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604E72425AEE2120012F117 /* BaseTabBarViewController.swift */; };
 		D604E73325AEE5640012F117 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D604E73225AEE5640012F117 /* Post.storyboard */; };
-		D604E73925AEE5880012F117 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D604E73825AEE5880012F117 /* User.storyboard */; };
+		D604E73925AEE5880012F117 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D604E73825AEE5880012F117 /* Profile.storyboard */; };
 		D617847825B93B2E00B00F37 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D617847725B93B2E00B00F37 /* ProfileViewController.swift */; };
 		D617847B25B9451E00B00F37 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D617847A25B9451E00B00F37 /* Login.storyboard */; };
 		D617847E25B9454300B00F37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D617847D25B9454300B00F37 /* LoginViewController.swift */; };
@@ -41,12 +42,13 @@
 /* Begin PBXFileReference section */
 		3166A42BF3F278A41C917DED /* Pods-InstagramApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramApp.debug.xcconfig"; path = "Target Support Files/Pods-InstagramApp/Pods-InstagramApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CAC45D9EEA072ECD15832C07 /* Pods_InstagramApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D604D26C25CA215300122E90 /* CheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckModel.swift; sourceTree = "<group>"; };
 		D604E71725AE9C370012F117 /* ToukouListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToukouListCollectionViewCell.swift; sourceTree = "<group>"; };
 		D604E71B25AE9CE90012F117 /* ToukouListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToukouListCell.xib; sourceTree = "<group>"; };
 		D604E71F25AEE15E0012F117 /* BaseTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseTabBar.storyboard; sourceTree = "<group>"; };
 		D604E72425AEE2120012F117 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 		D604E73225AEE5640012F117 /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
-		D604E73825AEE5880012F117 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		D604E73825AEE5880012F117 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D617847725B93B2E00B00F37 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D617847A25B9451E00B00F37 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		D617847D25B9454300B00F37 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -128,8 +130,8 @@
 				D6FA407225A40E0400F73DBA /* HomeViewController.swift */,
 				D604E72425AEE2120012F117 /* BaseTabBarViewController.swift */,
 				D6B68AE725AFF213003476E3 /* PostViewController.swift */,
-				D65C2D2A25B027DE00E51FF6 /* SignUpViewController.swift */,
 				D617847725B93B2E00B00F37 /* ProfileViewController.swift */,
+				D65C2D2A25B027DE00E51FF6 /* SignUpViewController.swift */,
 				D617847D25B9454300B00F37 /* LoginViewController.swift */,
 				D639762A25BA721100B47961 /* HashTagViewController.swift */,
 				D639763325BAAB0600B47961 /* DetailViewController.swift */,
@@ -143,7 +145,7 @@
 				D604E71F25AEE15E0012F117 /* BaseTabBar.storyboard */,
 				D6FA407425A40E0400F73DBA /* Home.storyboard */,
 				D604E73225AEE5640012F117 /* Post.storyboard */,
-				D604E73825AEE5880012F117 /* User.storyboard */,
+				D604E73825AEE5880012F117 /* Profile.storyboard */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -163,6 +165,7 @@
 				D65C3C6125B3C96900C03AE0 /* User.swift */,
 				D6FFEB5C25B5680600A4995E /* PostDB.swift */,
 				D639763025BA97A500B47961 /* HashTagDB.swift */,
+				D604D26C25CA215300122E90 /* CheckModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -282,7 +285,7 @@
 				D639762825BA71EF00B47961 /* HashTag.storyboard in Resources */,
 				D65C2D2825B027BA00E51FF6 /* SignUp.storyboard in Resources */,
 				D639763725BAAB2500B47961 /* Detail.storyboard in Resources */,
-				D604E73925AEE5880012F117 /* User.storyboard in Resources */,
+				D604E73925AEE5880012F117 /* Profile.storyboard in Resources */,
 				D6C5E98A25B13BAE00554450 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +354,7 @@
 				D65C3C6225B3C96900C03AE0 /* User.swift in Sources */,
 				D639762B25BA721100B47961 /* HashTagViewController.swift in Sources */,
 				D617847E25B9454300B00F37 /* LoginViewController.swift in Sources */,
+				D604D26D25CA215300122E90 /* CheckModel.swift in Sources */,
 				D604E71825AE9C370012F117 /* ToukouListCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

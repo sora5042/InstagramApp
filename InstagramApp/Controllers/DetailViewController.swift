@@ -20,12 +20,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-
+        
     }
     
     private func setupView() {

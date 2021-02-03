@@ -13,8 +13,6 @@ import FirebaseFirestore
 class ToukouListCollectionViewCell: UICollectionViewCell {
     
     private var postDB = [PostDB]()
-    private let db = Firestore.firestore()
-    
     var post: PostDB? {
         didSet {
             
@@ -23,12 +21,11 @@ class ToukouListCollectionViewCell: UICollectionViewCell {
                 descriptionLabel.text = edit.contentText
                 userNameLabel.text = edit.username
                 userNameLabel2.text = edit.username
-                dateLabel.text = dateFormatterForDateLabel(date: edit.createdAt.dateValue() ?? Date())
+                dateLabel.text = dateFormatterForDateLabel(date: edit.createdAt.dateValue() )
                 countLabel.text = String(post?.likeCount ?? 0) + "いいね"
                 
                 if let url = URL(string: edit.contentImageUrl) {
                     Nuke.loadImage(with: url, into: toukouImageView)
-                    
                     
                 }
                 
@@ -53,8 +50,7 @@ class ToukouListCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         backgroundColor = .white
-        userImageView.layer.cornerRadius = 12.5
-    
+        userImageView.layer.cornerRadius = 15
     }
     
     private func dateFormatterForDateLabel(date: Date) -> String {

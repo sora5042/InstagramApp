@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import Nuke
+import Pastel
 
 class PostViewController: UIViewController {
     
@@ -34,13 +35,13 @@ class PostViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var editUsernameLabel: UILabel!
+    @IBOutlet weak var PostUsernameLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var contentImageButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var editTopView: UIView!
+    @IBOutlet weak var PostTopView: UIView!
     
     
     override func viewDidLoad() {
@@ -48,22 +49,34 @@ class PostViewController: UIViewController {
         
         setupViews()
         fetchLoginUserInfo()
+        textFieldPlaceholder()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        PastelAnimation()
+    }
     
     private func setupViews() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        editTopView.layer.borderWidth = 3
-        editTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
+        PostTopView.layer.borderWidth = 3
+        PostTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         contentImageButton.layer.borderWidth = 2
         contentImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
         contentImageButton.addTarget(self, action: #selector(tappedContentImageButton), for: .touchUpInside)
         sendButton.addTarget(self, action: #selector(tappedSendButton), for: .touchUpInside)
         
         userImageView.layer.cornerRadius = 25
+        
+    }
+    
+    private func textFieldPlaceholder() {
+        
+        contentTextField.attributedPlaceholder = NSAttributedString(string: "投稿文", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
         
     }
     
@@ -94,6 +107,8 @@ class PostViewController: UIViewController {
     }
     
     @objc private func tappedSendButton() {
+        
+        
         
         guard let contentImage = contentImageButton.imageView?.image else { return }
         guard let uploadContentImage = contentImage.jpegData(compressionQuality: 0.3) else { return }
@@ -185,11 +200,7 @@ class PostViewController: UIViewController {
     
     @objc private func tappedContentImageButton() {
         
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: nil)
-        
+        showAlert()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -217,6 +228,28 @@ class PostViewController: UIViewController {
             randomString += NSString(characters: &nextChar, length: 1) as String
         }
         return randomString
+    }
+    
+    private func PastelAnimation() {
+        
+        let pastelView = PastelView(frame: view.bounds)
+        
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+        
+        pastelView.animationDuration = 3.0
+        
+        pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                              UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                              UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                              UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+        
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
+        
     }
 }
 
@@ -303,6 +336,35 @@ extension PostViewController {
 //MARK: - UIImagePickerControllerDelegate,UINavigationControllerDelegate
 extension PostViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    
+    func doCamera() {
+        
+        let sourceType:UIImagePickerController.SourceType = .camera
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.allowsEditing = true
+            cameraPicker.sourceType = sourceType
+            cameraPicker.delegate = self
+            self.present(cameraPicker, animated: true, completion: nil)
+        }
+    }
+    
+    func doAlbum() {
+        
+        let sourceType:UIImagePickerController.SourceType = .photoLibrary
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.allowsEditing = true
+            cameraPicker.sourceType = sourceType
+            cameraPicker.delegate = self
+            self.present(cameraPicker, animated: true, completion: nil)
+        }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editImage = info[.editedImage] as? UIImage {
@@ -319,5 +381,33 @@ extension PostViewController: UIImagePickerControllerDelegate,UINavigationContro
         contentImageButton.clipsToBounds = true
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func showAlert(){
+        
+        let alertController = UIAlertController(title: "選択", message: "どちらを使用しますか?", preferredStyle: .actionSheet)
+        
+        let action1 = UIAlertAction(title: "カメラ", style: .default) { (alert) in
+            
+            self.doCamera()
+        }
+        
+        let action2 = UIAlertAction(title: "アルバム", style: .default) { (alert) in
+            
+            self.doAlbum()
+        }
+        
+        let action3 = UIAlertAction(title: "キャンセル", style: .cancel)
+        
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        alertController.addAction(action3)
+        self.present(alertController, animated: true, completion: nil)
+        
     }
 }

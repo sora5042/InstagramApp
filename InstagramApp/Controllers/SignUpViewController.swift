@@ -11,10 +11,12 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 import PKHUD
+import Pastel
 
 class SignUpViewController: UIViewController {
     
     
+    @IBOutlet weak var pastelBackView: UIView!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -27,7 +29,15 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        textFieldPlaceholder()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        PastelAnimation()
     }
     
     private func setupViews() {
@@ -54,6 +64,14 @@ class SignUpViewController: UIViewController {
         
         signUpTopView.layer.borderWidth = 3
         signUpTopView.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
+        
+    }
+    
+    private func textFieldPlaceholder() {
+        
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray6 ])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "パスワード", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray6 ])
+        userNameTextField.attributedPlaceholder = NSAttributedString(string: "ユーザーネーム", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray6 ])
         
     }
     
@@ -84,6 +102,7 @@ class SignUpViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        loginViewController.modalTransitionStyle = .crossDissolve
         loginViewController.modalPresentationStyle = .fullScreen
         self.present(loginViewController, animated: true, completion: nil)
         
@@ -91,10 +110,10 @@ class SignUpViewController: UIViewController {
     
     @objc private func tappedProfileImageButton() {
         
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: nil)
+        let checkModel = CheckModel()
+        checkModel.showCheckPermission()
+        
+        showAlert()
     }
     
     @objc private func tappedRegisterButton() {
@@ -185,6 +204,28 @@ class SignUpViewController: UIViewController {
         return true
         
     }
+    
+    private func PastelAnimation() {
+        
+        let pastelView = PastelView(frame: view.bounds)
+        
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+        
+        pastelView.animationDuration = 3.0
+        
+        pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                              UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                              UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                              UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                              UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+        
+        pastelView.startAnimation()
+        self.pastelBackView.insertSubview(pastelView, at: 0)
+        
+    }
 }
 
 //MARK: - UITextFieldDelegate
@@ -211,12 +252,40 @@ extension SignUpViewController: UITextFieldDelegate {
 // MARK: - UIImagePickerControllerDelegate,UINavigationControllerDelegate
 extension SignUpViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    func doCamera() {
+        
+        let sourceType:UIImagePickerController.SourceType = .camera
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.allowsEditing = true
+            cameraPicker.sourceType = sourceType
+            cameraPicker.delegate = self
+            self.present(cameraPicker, animated: true, completion: nil)
+        }
+    }
+    
+    func doAlbum() {
+        
+        let sourceType:UIImagePickerController.SourceType = .photoLibrary
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.allowsEditing = true
+            cameraPicker.sourceType = sourceType
+            cameraPicker.delegate = self
+            self.present(cameraPicker, animated: true, completion: nil)
+        }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editImage = info[.editedImage] as? UIImage {
             profileImageButton.setImage(editImage.withRenderingMode(.alwaysOriginal), for: .normal)
             
-        }else if let originalImage = info[.originalImage] as? UIImage {
+        } else if let originalImage = info[.originalImage] as? UIImage {
             profileImageButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         
@@ -227,6 +296,33 @@ extension SignUpViewController: UIImagePickerControllerDelegate,UINavigationCont
         profileImageButton.clipsToBounds = true
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func showAlert(){
+        
+        let alertController = UIAlertController(title: "選択", message: "どちらを使用しますか?", preferredStyle: .actionSheet)
+        
+        let action1 = UIAlertAction(title: "カメラ", style: .default) { (alert) in
+            
+            self.doCamera()
+        }
+        
+        let action2 = UIAlertAction(title: "アルバム", style: .default) { (alert) in
+            
+            self.doAlbum()
+        }
+        
+        let action3 = UIAlertAction(title: "キャンセル", style: .cancel)
+        
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        alertController.addAction(action3)
+        self.present(alertController, animated: true, completion: nil)
         
     }
 }
