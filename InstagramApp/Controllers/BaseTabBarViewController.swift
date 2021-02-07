@@ -32,6 +32,5 @@ class BaseTabBarViewController: UITabBarController {
         
         viewController.tabBarItem.selectedImage = UIImage(named: selectedImage)?.resize(size: .init(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
         viewController.tabBarItem.image = UIImage(named: unselectedImage)?.resize(size: .init(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
-            
     }
 }

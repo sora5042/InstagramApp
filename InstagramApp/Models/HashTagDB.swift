@@ -28,6 +28,5 @@ class HashTagDB {
         self.uid = dic["uid"] as? String ?? ""
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
         self.postDate = dic["postDate"] as? Double ?? Double()
-
     }
 }

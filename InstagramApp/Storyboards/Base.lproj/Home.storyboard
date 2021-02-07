@@ -17,6 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2h-Q2-GGg">
+                                <rect key="frame" x="0.0" y="752" width="375" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="51h-ME-maX"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ai2-AZ-dhj">
                                 <rect key="frame" x="0.0" y="104" width="375" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -58,11 +65,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="i2h-Q2-GGg" secondAttribute="bottom" id="2Gp-Ls-bHe"/>
                             <constraint firstItem="ai2-AZ-dhj" firstAttribute="top" secondItem="zZa-mB-iRR" secondAttribute="bottom" id="6Vp-7d-IQM"/>
                             <constraint firstItem="zZa-mB-iRR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="AYt-Z0-XY2"/>
+                            <constraint firstItem="i2h-Q2-GGg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ele-dx-THt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ai2-AZ-dhj" secondAttribute="bottom" id="Hw2-2h-U6C"/>
                             <constraint firstItem="ai2-AZ-dhj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MQD-be-sQ3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ai2-AZ-dhj" secondAttribute="trailing" id="McV-1l-yge"/>
+                            <constraint firstItem="i2h-Q2-GGg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QqY-cw-gA1"/>
                             <constraint firstItem="zZa-mB-iRR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aJL-UP-ar8"/>
                             <constraint firstItem="ai2-AZ-dhj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="lRD-9u-wWc"/>
                             <constraint firstItem="zZa-mB-iRR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sdh-1k-Njv"/>
@@ -75,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="713.04347826086962" y="113.83928571428571"/>
+            <point key="canvasLocation" x="712.79999999999995" y="113.79310344827587"/>
         </scene>
     </scenes>
     <resources>

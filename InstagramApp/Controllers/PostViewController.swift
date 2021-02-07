@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import Nuke
 import Pastel
+import PKHUD
 
 class PostViewController: UIViewController {
     
@@ -43,7 +44,6 @@ class PostViewController: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var PostTopView: UIView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +69,9 @@ class PostViewController: UIViewController {
         contentImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
         contentImageButton.addTarget(self, action: #selector(tappedContentImageButton), for: .touchUpInside)
         sendButton.addTarget(self, action: #selector(tappedSendButton), for: .touchUpInside)
+//        sendButton.layer.borderWidth = 1
+//        sendButton.layer.borderColor = UIColor.white.cgColor
+//        sendButton.layer.cornerRadius = 10
         
         userImageView.layer.cornerRadius = 25
         
@@ -76,7 +79,7 @@ class PostViewController: UIViewController {
     
     private func textFieldPlaceholder() {
         
-        contentTextField.attributedPlaceholder = NSAttributedString(string: "投稿文", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
+        contentTextField.attributedPlaceholder = NSAttributedString(string: "投稿文", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
         
     }
     
@@ -108,13 +111,13 @@ class PostViewController: UIViewController {
     
     @objc private func tappedSendButton() {
         
-        
-        
         guard let contentImage = contentImageButton.imageView?.image else { return }
         guard let uploadContentImage = contentImage.jpegData(compressionQuality: 0.3) else { return }
         
         let fileName = NSUUID().uuidString
         let storageRef = Storage.storage().reference().child("post_image").child(fileName)
+        
+        HUD.show(.progress)
         
         storageRef.putData(uploadContentImage, metadata: nil) { (metaData, err) in
             
@@ -128,9 +131,12 @@ class PostViewController: UIViewController {
                 
                 if let err = err {
                     print("Firestorageからのダウンロードに失敗しました。\(err)")
+                    HUD.hide()
                     return
                     
                 }
+                
+                HUD.hide()
                 
                 guard let urlString = url?.absoluteString else { return }
                 self.creatPostFromFirestore(contentImageUrl: urlString)
@@ -293,7 +299,6 @@ extension PostViewController {
                 
                 guard let urlString = url?.absoluteString else { return }
                 self.creatHashTagFromFirestore(hashTag: hashTag, contentImageUrl: urlString)
-                
             })
         })
     }
@@ -327,7 +332,6 @@ extension PostViewController {
             if let err = err {
                 print("Firestoreへの情報の保存に失敗しました。\(err)")
                 return
-                
             }
         }
     }
@@ -408,6 +412,5 @@ extension PostViewController: UIImagePickerControllerDelegate,UINavigationContro
         alertController.addAction(action2)
         alertController.addAction(action3)
         self.present(alertController, animated: true, completion: nil)
-        
     }
 }

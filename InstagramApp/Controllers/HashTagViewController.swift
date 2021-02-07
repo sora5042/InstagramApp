@@ -30,8 +30,7 @@ class HashTagViewController: UIViewController {
         
         setupViews()
         loadHashTag(hashTag: hashTag)
-        
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +52,7 @@ class HashTagViewController: UIViewController {
         backButton.addTarget(self, action: #selector(tappedBackButton), for: .touchUpInside)
         
         hashTagLabel.text = "#\(hashTag)"
-        
+
     }
     
     private func loadHashTag(hashTag:String) {
@@ -75,7 +74,6 @@ class HashTagViewController: UIViewController {
                     self.hashTagDB.append(newHashTagDB)
                     self.hashTagDB.reverse()
                     self.hashTagCollectionView.reloadData()
-                    
                 }
             }
         }
@@ -84,7 +82,6 @@ class HashTagViewController: UIViewController {
     @objc private func tappedBackButton() {
         
         dismiss(animated: true, completion: nil)
-        
     }
     
     private func PastelAnimation() {
@@ -106,7 +103,6 @@ class HashTagViewController: UIViewController {
         
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
-        
     }
 }
 

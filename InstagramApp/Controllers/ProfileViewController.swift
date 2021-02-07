@@ -38,7 +38,6 @@ class ProfileViewController: UIViewController {
         
         setupViews()
         fetchLoginUserInfo()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +58,6 @@ class ProfileViewController: UIViewController {
         
         logoutButton.layer.cornerRadius = 12
         logoutButton.addTarget(self, action: #selector(tappedLogoutButton), for: .touchUpInside)
-        
     }
     
     @objc func keyboardWillShow(_ notification:NSNotification){
@@ -71,7 +69,6 @@ class ProfileViewController: UIViewController {
         } else {
             
             return
-            
         }
     }
     
@@ -92,14 +89,12 @@ class ProfileViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.view.endEditing(true)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
         return true
-        
     }
     
     @objc private func tappedLogoutButton() {
@@ -115,7 +110,6 @@ class ProfileViewController: UIViewController {
         } catch  {
             
             print("ログアウトに失敗しました。\(error)")
-            
         }
     }
     
@@ -133,7 +127,6 @@ class ProfileViewController: UIViewController {
             guard let snapShot = snapShot, let dic = snapShot.data() else { return }
             let user = User(dic: dic)
             self.user = user
-            
         }
     }
     
@@ -156,6 +149,5 @@ class ProfileViewController: UIViewController {
         
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
-        
     }
 }

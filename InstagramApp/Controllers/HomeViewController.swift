@@ -25,7 +25,6 @@ class HomeViewController: UIViewController {
         
         setupViews()
         fetchPostInfoFromFirestore()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +99,6 @@ class HomeViewController: UIViewController {
         
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
-        
     }
 }
 
@@ -112,7 +110,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let width = self.view.frame.width
         
         return .init(width: width, height: 550)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -140,7 +137,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             } else if flag! == false {
                 
                 cell.goodButton.setImage(UIImage(named: "noハート"), for: .normal)
-                
             }
         }
         
@@ -153,7 +149,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             hashTagViewController.modalPresentationStyle = .fullScreen
             hashTagViewController.hashTag = hashTag
             self.present(hashTagViewController, animated: true, completion: nil)
-            
         }
         
         return cell
@@ -183,13 +178,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     
                     count = self.postDB[sender.tag].likeCount + 1
                     db.collection("post").document(postDB[sender.tag].postId).setData(["likeFlagDic": [uid: true]], merge: true)
-                    
                 }
             }
         }
         
         db.collection("post").document(postDB[sender.tag].postId).updateData(["likeCount": count], completion: nil)
         toukouListCollectionView.reloadData()
-        
     }
 }

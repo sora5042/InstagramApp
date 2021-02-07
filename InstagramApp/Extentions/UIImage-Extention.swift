@@ -23,6 +23,5 @@ extension UIImage {
         UIGraphicsEndImageContext()
         
         return resizedImage
-        
     }
 }

@@ -25,7 +25,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
-        
     }
     
     private func setupView() {
@@ -36,12 +35,10 @@ class DetailViewController: UIViewController {
         
         if let url = URL(string: profileImageUrl) {
             Nuke.loadImage(with: url, into: userImageView)
-            
         }
         
         if let url = URL(string: contentImageUrl) {
             Nuke.loadImage(with: url, into: contentImageView)
-            
         }
     }
 }

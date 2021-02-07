@@ -18,7 +18,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="投稿文" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-2W-WMD">
                                 <rect key="frame" x="16" y="609" width="298" height="34"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="298" id="3ab-q1-N57"/>
                                 </constraints>
@@ -26,13 +26,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-R2-Mh7">
-                                <rect key="frame" x="323" y="609" width="37" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-R2-Mh7">
+                                <rect key="frame" x="323" y="609" width="37" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="37" id="4XF-vm-0gh"/>
+                                    <constraint firstAttribute="height" constant="37" id="PiU-lB-eLv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="送信"/>
+                                <state key="normal" title="送信" image="無料の紙飛行機アイコン">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1uc-DN-Nhi">
                                 <rect key="frame" x="131" y="149" width="55" height="55"/>
@@ -81,6 +83,13 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyS-zA-4bh">
+                                <rect key="frame" x="0.0" y="752" width="375" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="0W6-rr-epu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I8C-xd-12K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -90,7 +99,10 @@
                             <constraint firstItem="cVS-vR-Az1" firstAttribute="centerY" secondItem="58Y-5D-iXs" secondAttribute="centerY" id="IHM-cx-ICe"/>
                             <constraint firstItem="cVS-vR-Az1" firstAttribute="leading" secondItem="I8C-xd-12K" secondAttribute="leading" constant="5" id="M8Q-VC-5ZS"/>
                             <constraint firstItem="I8C-xd-12K" firstAttribute="trailing" secondItem="cVS-vR-Az1" secondAttribute="trailing" constant="5" id="Nj0-CC-b2k"/>
+                            <constraint firstItem="lyS-zA-4bh" firstAttribute="leading" secondItem="I8C-xd-12K" secondAttribute="leading" id="U0D-o8-VIw"/>
+                            <constraint firstItem="lyS-zA-4bh" firstAttribute="trailing" secondItem="I8C-xd-12K" secondAttribute="trailing" id="Usd-px-DCH"/>
                             <constraint firstItem="IJI-jS-JVh" firstAttribute="trailing" secondItem="I8C-xd-12K" secondAttribute="trailing" id="XK7-4z-4Vp"/>
+                            <constraint firstAttribute="bottom" secondItem="lyS-zA-4bh" secondAttribute="bottom" id="XvT-S5-wp7"/>
                             <constraint firstItem="1uc-DN-Nhi" firstAttribute="top" secondItem="IJI-jS-JVh" secondAttribute="bottom" constant="45" id="aez-Kk-Yhn"/>
                             <constraint firstItem="rc9-xd-be0" firstAttribute="top" secondItem="IJI-jS-JVh" secondAttribute="bottom" constant="59" id="dcF-1i-CzW"/>
                             <constraint firstItem="I8C-xd-12K" firstAttribute="trailing" secondItem="rc9-xd-be0" secondAttribute="trailing" constant="94" id="ggu-tb-ejv"/>
@@ -118,6 +130,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="無料の紙飛行機アイコン" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

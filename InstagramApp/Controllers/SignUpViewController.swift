@@ -15,7 +15,6 @@ import Pastel
 
 class SignUpViewController: UIViewController {
     
-    
     @IBOutlet weak var pastelBackView: UIView!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
@@ -30,8 +29,6 @@ class SignUpViewController: UIViewController {
         
         setupViews()
         textFieldPlaceholder()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,9 +66,9 @@ class SignUpViewController: UIViewController {
     
     private func textFieldPlaceholder() {
         
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray6 ])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "パスワード", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray6 ])
-        userNameTextField.attributedPlaceholder = NSAttributedString(string: "ユーザーネーム", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray6 ])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray3 ])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "パスワード", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray3 ])
+        userNameTextField.attributedPlaceholder = NSAttributedString(string: "ユーザーネーム", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray3 ])
         
     }
     
@@ -195,14 +192,12 @@ class SignUpViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.view.endEditing(true)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
         return true
-        
     }
     
     private func PastelAnimation() {
@@ -224,7 +219,6 @@ class SignUpViewController: UIViewController {
         
         pastelView.startAnimation()
         self.pastelBackView.insertSubview(pastelView, at: 0)
-        
     }
 }
 
@@ -242,9 +236,9 @@ extension SignUpViewController: UITextFieldDelegate {
             registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
             
         } else {
+            
             registerButton.isEnabled = true
             registerButton.backgroundColor = .rgb(red: 103, green: 219, blue: 88)
-            
         }
     }
 }
@@ -323,6 +317,5 @@ extension SignUpViewController: UIImagePickerControllerDelegate,UINavigationCont
         alertController.addAction(action2)
         alertController.addAction(action3)
         self.present(alertController, animated: true, completion: nil)
-        
     }
 }

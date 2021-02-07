@@ -31,7 +31,6 @@ class ToukouListCollectionViewCell: UICollectionViewCell {
                 
                 if let url = URL(string: edit.profileImageUrl) {
                     Nuke.loadImage(with: url, into: userImageView)
-                    
                 }
             }
         }

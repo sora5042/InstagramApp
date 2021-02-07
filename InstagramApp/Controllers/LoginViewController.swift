@@ -41,13 +41,12 @@ class LoginViewController: UIViewController {
         
         dontHaveAccountButton.addTarget(self, action: #selector(tappedDontHaveAccountButton), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
-        
     }
     
     private func textFieldPlaceholder() {
         
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "パスワード", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "パスワード", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
     }
     
     @objc private func tappedDontHaveAccountButton() {
@@ -57,7 +56,6 @@ class LoginViewController: UIViewController {
         signUpViewController.modalTransitionStyle = .crossDissolve
         signUpViewController.modalPresentationStyle = .fullScreen
         self.present(signUpViewController, animated: true, completion: nil)
-        
     }
     
     @objc private func tappedLoginButton() {
@@ -73,7 +71,6 @@ class LoginViewController: UIViewController {
                 print("ログインに失敗しました。\(err)")
                 HUD.hide()
                 return
-                
             }
             
             print("ログインに成功しました。")
@@ -82,7 +79,6 @@ class LoginViewController: UIViewController {
             let baseTabBarViewController = storyboard.instantiateViewController(withIdentifier: "BaseTabBarViewController") as! BaseTabBarViewController
             baseTabBarViewController.modalPresentationStyle = .fullScreen
             self.present(baseTabBarViewController, animated: true, completion: nil)
-            
         }
     }
     
@@ -90,14 +86,12 @@ class LoginViewController: UIViewController {
         
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
         return true
-        
     }
     
     private func PastelAnimation() {
@@ -119,6 +113,5 @@ class LoginViewController: UIViewController {
         
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
-        
     }
 }
