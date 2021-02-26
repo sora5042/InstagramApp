@@ -23,9 +23,8 @@ Xcode 12.3
 
 # スクリーンショット
 
-![IMG_0720](https://user-images.githubusercontent.com/65600700/109266847-f4361f00-784b-11eb-81af-75d00c2a4288.PNG)  
-![IMG_0724](https://user-images.githubusercontent.com/65600700/109266735-c650da80-784b-11eb-8379-288e2fca56f9.PNG)
-![IMG_0727](https://user-images.githubusercontent.com/65600700/109267083-5abb3d00-784c-11eb-979a-ff824f664ed9.PNG)  
-![IMG_0725](https://user-images.githubusercontent.com/65600700/109266671-af11ed00-784b-11eb-99c7-713743026cdc.PNG)  
-![test-Image](https://user-images.githubusercontent.com/65600700/109265810-7b829300-784a-11eb-8f28-9851eb29af92.PNG)  
-    
+<img src="https://user-images.githubusercontent.com/65600700/109266847-f4361f00-784b-11eb-81af-75d00c2a4288.PNG" width="250px">
+<img src="https://user-images.githubusercontent.com/65600700/109266735-c650da80-784b-11eb-8379-288e2fca56f9.PNG" width="250px">
+<img src="https://user-images.githubusercontent.com/65600700/109267083-5abb3d00-784c-11eb-979a-ff824f664ed9.PNG" width="250px">
+<img src="https://user-images.githubusercontent.com/65600700/109266671-af11ed00-784b-11eb-99c7-713743026cdc.PNG" width="250px">
+<img src="https://user-images.githubusercontent.com/65600700/109265810-7b829300-784a-11eb-8f28-9851eb29af92.PNG" width="250px">
